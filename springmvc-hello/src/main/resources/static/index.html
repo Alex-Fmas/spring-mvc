@@ -203,11 +203,71 @@
     </div>
 
     <div class="card">
+        <h2>功能3：POJO 对象绑定测试</h2>
+
+        <p>
+            测试 Spring MVC 自动将请求参数封装进 <code>Person</code> 对象。<br>
+            <strong>注意：</strong>当前表单的 <code>name</code> 属性已调整为与你的请求参数一致。
+        </p>
+
+        <form action="/handle03" method="post">
+
+            <table>
+                <tr>
+                    <td>用户名 (username)：</td>
+                    <td>
+                        <input type="text"
+                               name="username"
+                               placeholder="对应 Person 的 username 属性">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>密码 (password)：</td>
+                    <td>
+                        <input type="password"
+                               name="password"
+                               placeholder="对应 Person 的 password 属性">
+                </tr>
+
+                <tr>
+                    <td>手机号 (cellphone)：</td>
+                    <td>
+                        <input type="text"
+                               name="cellphone"
+                               placeholder="对应 Person 的 cellphone 属性">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>用户协议 (agreement)：</td>
+                    <td>
+                        <label>
+                            <input type="checkbox"
+                                   name="agreement">
+                            同意协议（对应 Person 的 agreement 属性）
+                        </label>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td>
+                        <button type="submit" style="background: #17a2b8;">
+                            提交 POJO 绑定测试
+                        </button>
+                    </td>
+                </tr>
+            </table>
+
+        </form>
+    </div>
+
+    <div class="card">
         <h2>后续测试功能</h2>
 
         <ul>
             <li class="todo">PathVariable 路径变量测试</li>
-            <li class="todo">POJO 对象绑定测试</li>
             <li class="todo">数组参数接收测试</li>
             <li class="todo">List 集合接收测试</li>
             <li class="todo">JSON 数据接收测试</li>

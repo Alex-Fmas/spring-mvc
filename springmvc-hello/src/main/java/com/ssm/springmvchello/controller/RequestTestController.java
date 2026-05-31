@@ -1,9 +1,7 @@
 package com.ssm.springmvchello.controller;
 
-
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import com.ssm.springmvchello.bean.Person;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class RequestTestController {
@@ -27,6 +25,7 @@ public class RequestTestController {
      * RequestParam 用来映射请求参数
      * defaultValue 默认值
      * required 是否必须
+     * 无论请求参数带到了 请求体中还是 urL？后面，他们都是请求参数。都可以直接用@RequestParam或者同一个变量名获取到
      * 命名不一致
      * @return "handle02"
      */
@@ -42,5 +41,52 @@ public class RequestTestController {
         return "handle02";
     }
 
+    /**
+     * 如果目标方法参数是一个 pojo;SpringMVC 会自动把请求参数 和 pojo 属性进行匹配；
+     * 效果：
+     * 1、p0jo的所有属性值都是来自于请求参数
+     *2、如果请求参数没带，封装为nuLl；
+     * @param person
+     * dreturn
+     */
+    @RequestMapping("/handle03")
+    public String handle03(Person person) {
+        System.out.println(person);
+        return "handle03";
+    }
 
+    /**
+     * CRequestHeader 获取请求头信息
+     * @param host
+     * @param userAgent
+     * @return "handle04"
+     */
+    @RequestMapping("/handle04")
+    public String handle04(@RequestHeader(value = "host") String host,
+                           @RequestHeader(value = "user-agent") String userAgent) {
+        System.out.println("host:" + host);
+        System.out.println("userAgent:" + userAgent);
+        return "handle04:host " + host;
+    }
+
+    /**
+     * @CookieValue 获取cookie值
+     * @param haha
+     * @return "ok: cookie: " + haha;
+     */
+    @RequestMapping("/handle05")
+    public String handle05(@CookieValue("haha") String haha) {
+        return "ok: cookie: " + haha;
+    }
+
+    /**
+    * @CookieValue：获取cookie值
+    * @param person
+    * @return "ok: " + person;
+    */
+    @RequestMapping("/handle06")
+    public String handle06(Person person) {
+        System.out.println(person);
+        return "ok: " + person;
+    }
 }
