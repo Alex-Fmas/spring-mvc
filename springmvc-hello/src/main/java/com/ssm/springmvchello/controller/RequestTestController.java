@@ -89,4 +89,20 @@ public class RequestTestController {
         System.out.println(person);
         return "ok: " + person;
     }
+
+    /**
+     * @RequestBody：获取请求体json数据，自动转为person对象
+     * ★pRequestBody Person person
+     * 拿到请求体中的jsop字符串
+     * 把json字符串转为person对象
+     *测试接受json数据
+     * 1、发出：
+     * @param person
+     * @return
+     */
+    @RequestMapping("/handle07")
+    public String handle07(@RequestBody Person person) {
+        System.out.println(person);
+        return "ok: " + person;
+    }
 }
