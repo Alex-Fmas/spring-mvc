@@ -125,7 +125,7 @@ public class RequestTestController {
         long size = headerImgFile.getSize();
         System.out.println("originalFilename:" + originalFilename1);
         // 保存到/Users/fmas
-        headerImgFile.transferTo(new File("/Users/fmas/Photo" + originalFilename1));
+        headerImgFile.transferTo(new File("/Users/fmas/Photo/" + originalFilename1));
         // 处理生活照
         if (lifeImgFile != null && lifeImgFile.length > 0) {
             for (MultipartFile multipartFile : lifeImgFile) {

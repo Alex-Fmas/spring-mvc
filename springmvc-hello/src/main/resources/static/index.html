@@ -45,7 +45,8 @@
 
         input[type=text],
         input[type=password],
-        input[type=number]{
+        input[type=number],
+        input[type=file]{
             width:100%;
             padding:8px;
             box-sizing:border-box;
@@ -115,10 +116,7 @@
 
     <div class="card">
         <h2>功能3 & 功能6：复杂 POJO 对象级联绑定测试</h2>
-        <p>
-            测试表单直接封装进 <code>Person</code> 对象（包含数组、级联对象 <code>address</code>）。<br>
-            <strong>注意：</strong>级联对象属性名使用 <code>address.province</code> 的形式。
-        </p>
+        <p>测试表单直接封装进 <code>Person</code> 对象（包含数组、级联对象 <code>address</code>）。</p>
         <form action="/handle06" method="post">
             <table>
                 <tr><td>用户名 (username)：</td><td><input type="text" name="username" value="张三"></td></tr>
@@ -131,7 +129,6 @@
                     <td>
                         <label><input type="checkbox" name="hobby" value="篮球" checked> 篮球</label>
                         <label><input type="checkbox" name="hobby" value="足球" checked> 足球</label>
-                        <label><input type="checkbox" name="hobby" value="羽毛球"> 羽毛球</label>
                     </td>
                 </tr>
                 <tr><td>省份 (address.province)：</td><td><input type="text" name="address.province" value="陕西省"></td></tr>
@@ -153,7 +150,7 @@
 
     <div class="card">
         <h2>功能5：@CookieValue 获取 Cookie 测试</h2>
-        <p>测试 Spring MVC 获取名为 <code>haha</code> 的 Cookie。测试前请确保浏览器中存有该 Cookie，否则会报 400 错误。</p>
+        <p>测试 Spring MVC 获取名为 <code>haha</code> 的 Cookie。</p>
         <form action="/handle05" method="post">
             <button type="submit" style="background: #ffc107; color: #333;">提交请求测试 Cookie</button>
         </form>
@@ -161,18 +158,62 @@
 
     <div class="card">
         <h2>功能7：@RequestBody JSON 数据绑定测试</h2>
-        <p>测试通过 <code>Ajax/Fetch</code> 发送 JSON 格式数据，后端自动转换为 <code>Person</code> 对象。</p>
-        <p>即将发送的 JSON 数据样本：</p>
+        <p>测试通过 <code>Ajax/Fetch</code> 发送 JSON 格式数据。</p>
         <pre id="jsonPreview"></pre>
         <button type="button" id="btnJsonSubmit" style="background: #dc3545;">发送 JSON 数据测试</button>
         <div id="jsonResult" style="margin-top: 10px; color: green; font-weight: bold;"></div>
     </div>
 
     <div class="card">
+        <h2>功能8：文件上传测试 (MultipartFile)</h2>
+        <p>
+            测试单文件与多文件混合上传，同时封装 <code>Person</code> 的部分属性。<br>
+            <strong>注意：</strong>表单已配置 <code>method="post"</code> 和 <code>enctype="multipart/form-data"</code>。
+        </p>
+
+        <form action="/handle08" method="post" enctype="multipart/form-data">
+            <table>
+                <tr><td>用户名 (username)：</td><td><input type="text" name="username" value="李四"></td></tr>
+                <tr><td>密码 (password)：</td><td><input type="password" name="password" value="abc123"></td></tr>
+                <tr><td>手机号 (cellphone)：</td><td><input type="text" name="cellphone" value="13800138000"></td></tr>
+                <tr>
+                    <td>用户协议 (agreement)：</td>
+                    <td>
+                        <label><input type="checkbox" name="agreement" checked value="true"> 同意协议</label>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>个人头像 (headerImg)：</td>
+                    <td>
+                        <input type="file" name="headerImg" required>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>若干生活照 (lifeImg)：</td>
+                    <td>
+                        <input type="file" name="lifeImg" multiple>
+                        <small style="color: gray; display: block; margin-top: 4px;">按住 Ctrl / Command 键可选择多张图片</small>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td>
+                        <button type="submit" style="background: #6f42c1;">
+                            提交文件与表单数据
+                        </button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+    <div class="card">
         <h2>后续测试功能</h2>
         <ul>
             <li class="todo">PathVariable 路径变量测试</li>
-            <li class="todo">文件上传测试</li>
             <li class="todo">转发与重定向测试</li>
         </ul>
     </div>
@@ -180,48 +221,24 @@
 </div>
 
 <script>
-    // 准备要发送的 JSON 数据
     const jsonData = {
-        "username" : "张三",
-        "password" : "123456",
-        "cellphone" : "123456",
-        "agreement" : "true",
-        "sex" : "男",
-        "hobby" : ["篮球","足球"],
-        "grade" : "二年级",
-        "address" : {
-            "province" : "陕西省",
-            "city" : "西安市",
-            "area" : "雁塔区"
-        }
+        "username" : "张三", "password" : "123456", "cellphone" : "123456", "agreement" : "true",
+        "sex" : "男", "hobby" : ["篮球","足球"], "grade" : "二年级",
+        "address" : { "province" : "陕西省", "city" : "西安市", "area" : "雁塔区" }
     };
-
-    // 在页面展示 JSON 预览
     document.getElementById('jsonPreview').textContent = JSON.stringify(jsonData, null, 4);
 
-    // 绑定点击事件，使用 fetch 异步发送 POST 请求
     document.getElementById('btnJsonSubmit').addEventListener('click', function() {
         const resultDiv = document.getElementById('jsonResult');
-        resultDiv.style.color = 'orange';
         resultDiv.textContent = '正在发送中...';
-
         fetch('/handle07', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json' // 必须声明为 JSON 格式
-            },
-            body: JSON.stringify(jsonData) // 将 JS 对象转为 JSON 字符串
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(jsonData)
         })
         .then(response => response.text())
-        .then(data => {
-            resultDiv.style.color = 'green';
-            resultDiv.textContent = '后端返回结果: ' + data;
-        })
-        .catch(error => {
-            resultDiv.style.color = 'red';
-            resultDiv.textContent = '请求失败，请检查控制台或后端服务！';
-            console.error('Error:', error);
-        });
+        .then(data => { resultDiv.textContent = '后端返回结果: ' + data; })
+        .catch(error => { resultDiv.textContent = '请求失败！'; console.error(error); });
     });
 </script>
 
