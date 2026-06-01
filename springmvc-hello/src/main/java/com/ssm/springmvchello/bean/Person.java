@@ -8,7 +8,7 @@ public class Person {
     private String username;
     private String password;
     private String cellphone;
-    private String agreement;
+    private boolean agreement;
     private Assress address;
     private String sex;
     private String[] hobby;

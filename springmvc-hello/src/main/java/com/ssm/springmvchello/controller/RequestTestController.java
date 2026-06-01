@@ -2,6 +2,10 @@ package com.ssm.springmvchello.controller;
 
 import com.ssm.springmvchello.bean.Person;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.io.IOException;
 
 @RestController
 public class RequestTestController {
@@ -105,4 +109,34 @@ public class RequestTestController {
         System.out.println(person);
         return "ok: " + person;
     }
+
+    /**
+     * 文件上传；
+     * 1、@RequestParam 取出文件项，封装为MultipartFile，就可以掌到文件内容
+     * Cparam person
+     * dreturn
+     */
+    @RequestMapping("/handle08")
+    public String handle08(Person person,
+                           @RequestParam("headerImg") MultipartFile headerImgFile,
+                           @RequestParam("lifeImg") MultipartFile[] lifeImgFile) throws IOException {
+        // 处理头像
+        String originalFilename1 = headerImgFile.getOriginalFilename();
+        long size = headerImgFile.getSize();
+        System.out.println("originalFilename:" + originalFilename1);
+        // 保存到/Users/fmas
+        headerImgFile.transferTo(new File("/Users/fmas/Photo" + originalFilename1));
+        // 处理生活照
+        if (lifeImgFile != null && lifeImgFile.length > 0) {
+            for (MultipartFile multipartFile : lifeImgFile) {
+                String originalFilename2 = multipartFile.getOriginalFilename();
+                long size2 = multipartFile.getSize();
+                System.out.println("originalFilename:" + originalFilename2);
+                multipartFile.transferTo(new File("/Users/fmas/Photo/" + originalFilename2));
+            }
+        }
+        return "handle08";
+    }
+
+
 }
