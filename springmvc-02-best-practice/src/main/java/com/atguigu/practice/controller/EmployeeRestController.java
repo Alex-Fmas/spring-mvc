@@ -1,9 +1,9 @@
-package com.atguigu.rest.crud.controller;
+package com.atguigu.practice.controller;
 
 
-import com.atguigu.rest.crud.bean.Employee;
-import com.atguigu.rest.crud.common.R;
-import com.atguigu.rest.crud.service.EmployeeService;
+import com.atguigu.practice.bean.Employee;
+import com.atguigu.practice.common.R;
+import com.atguigu.practice.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

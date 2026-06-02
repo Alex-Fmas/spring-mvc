@@ -1,8 +1,8 @@
-package com.atguigu.rest.crud;
+package com.atguigu.practice;
 
-import com.atguigu.rest.crud.bean.Employee;
-import com.atguigu.rest.crud.dao.EmployeeDao;
-import com.atguigu.rest.crud.service.EmployeeService;
+import com.atguigu.practice.bean.Employee;
+import com.atguigu.practice.dao.EmployeeDao;
+import com.atguigu.practice.service.EmployeeService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,16 +21,19 @@ public class EmployeeDaoTest {
 
     @Test
     public void testEmployeeService() {
-        Employee employee = new Employee();
-       employee.setId(4L);
-//       employee.setName("李四22");
-//       employee.setAge(10);
-//       employee.setEmail("aaa");
-//       employee.setGender("#");
-       employee.setAddress("下次对对对");
-       employee.setSalary(new BigDecimal("0.1"));
+//        Employee employee = new Employee();
+//       employee.setId(4L);
+////       employee.setName("李四22");
+////       employee.setAge(10);
+////       employee.setEmail("aaa");
+////       employee.setGender("#");
+//       employee.setAddress("下次对对对");
+//       employee.setSalary(new BigDecimal("0.1"));
+//
+//        employeeService.updateEmp(employee);
 
-        employeeService.updateEmp(employee);
+        Employee employee = employeeService.getEmp(4L);
+        System.out.println("employee" + employee);
 
     }
 

@@ -1,6 +1,6 @@
-package com.atguigu.rest.crud.dao;
+package com.atguigu.practice.dao;
 
-import com.atguigu.rest.crud.bean.Employee;
+import com.atguigu.practice.bean.Employee;
 
 public interface EmployeeDao {
 

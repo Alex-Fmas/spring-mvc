@@ -1,7 +1,7 @@
-package com.atguigu.rest.crud.dao.impl;
+package com.atguigu.practice.dao.impl;
 
-import com.atguigu.rest.crud.bean.Employee;
-import com.atguigu.rest.crud.dao.EmployeeDao;
+import com.atguigu.practice.bean.Employee;
+import com.atguigu.practice.dao.EmployeeDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;

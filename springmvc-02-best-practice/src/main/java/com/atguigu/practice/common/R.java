@@ -1,4 +1,4 @@
-package com.atguigu.rest.crud.common;
+package com.atguigu.practice.common;
 
 import lombok.Data;
 

@@ -1,6 +1,6 @@
-package com.atguigu.rest.crud.service;
+package com.atguigu.practice.service;
 
-import com.atguigu.rest.crud.bean.Employee;
+import com.atguigu.practice.bean.Employee;
 
 public interface EmployeeService {
 

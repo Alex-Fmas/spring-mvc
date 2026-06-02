@@ -1,4 +1,4 @@
-package com.atguigu.rest.crud.bean;
+package com.atguigu.practice.bean;
 
 import lombok.Data;
 import java.math.BigDecimal;

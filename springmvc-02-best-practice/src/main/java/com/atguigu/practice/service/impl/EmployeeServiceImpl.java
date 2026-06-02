@@ -1,13 +1,11 @@
-package com.atguigu.rest.crud.service.impl;
+package com.atguigu.practice.service.impl;
 
-import com.atguigu.rest.crud.bean.Employee;
-import com.atguigu.rest.crud.dao.EmployeeDao;
-import com.atguigu.rest.crud.service.EmployeeService;
+import com.atguigu.practice.bean.Employee;
+import com.atguigu.practice.dao.EmployeeDao;
+import com.atguigu.practice.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
-
-import java.math.BigDecimal;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
