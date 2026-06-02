@@ -22,6 +22,8 @@
 
     <modules>
         <module>springmvc-hello</module>
+        <module>springmvc-restful-crud</module>
+        <module>springmvc-02-best-practice</module>
     </modules>
 
     <properties>
